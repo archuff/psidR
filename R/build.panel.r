@@ -288,15 +288,15 @@ build.panel <- function(datadir=NULL,fam.vars,ind.vars=NULL,wealth.vars=NULL,SAS
 						get.psid( family[ i , 'file' ] ,name= paste0(datadir, "FAM" , family[ i , 'year' ], "ER") , params , curl )
 					}
 				}
-
-				if (nrow(wlth)>0){
-				  for ( i in 1:nrow(wlth)){
-				    if (!(wlth.down[i])){
-				      get.psid( wlth[ i , 'file' ] ,name= paste0(datadir, "WEALTH" , wlth[ i , 'year' ], "ER") , params , curl )
-				    }
-				  }
+				if (any.wealth) {
+					if (nrow(wlth)>0){
+					  for ( i in 1:nrow(wlth)){
+					    if (!(wlth.down[i])){
+					      get.psid( wlth[ i , 'file' ] ,name= paste0(datadir, "WEALTH" , wlth[ i , 'year' ], "ER") , params , curl )
+					    }
+					  }
+					}
 				}
-				
 
 				# check if datadir contains individual index already
 				if (!("IND2015ER.rda" %in% lf)) {
